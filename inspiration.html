@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Inspiration</title>
+		<script>
+		  	function createPage() {
+		  		var container = document.createElement("div");
+		  		document.body.appendChild(container);
+
+		  		var img = document.createElement("img");
+		  		img.setAttribute("src", "");
+		  		img.setAttribute("id", "deep_image");
+		  		container.appendChild(img);
+		  		getNewImage();
+
+		  		var br = document.createElement("br");
+		  		container.appendChild(br);
+
+		  		var button = document.createElement("button");
+		  		button.innerText = "Change Image";
+		  		button.setAttribute("onclick", "getNewImage()");
+		  		button.setAttribute("style", "padding: 20px; margin: 20px;background-color: #008CBA;border-radius: 12px;color: white;");
+		  		container.appendChild(button);
+		  	}
+
+			function getNewImage() {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("deep_image").setAttribute("src", this.responseText);
+					}
+				};
+				xhttp.open("GET", "http://inspirobot.me/api?generate=true", true);
+				xhttp.send();
+		  	}
+		</script>
+	</head>
+	<body onload="createPage()"></body>
+</html>
